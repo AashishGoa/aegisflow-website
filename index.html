@@ -205,47 +205,64 @@
         </div>
     </section>
 
+
+    <!-- Tech Stack & Infrastructure Partners Section -->
+<section class="py-12 bg-slate-950 border-y border-slate-800 text-center">
+  <div class="max-w-4xl mx-auto px-6">
+    <p class="text-xs font-semibold tracking-widest text-slate-400 uppercase mb-6">
+      Powered By Enterprise-Grade Infrastructure
+    </p>
+    <div class="flex flex-wrap justify-center items-center gap-8 md:gap-12 opacity-80">
+      
+      <!-- Vercel -->
+      <div class="flex items-center gap-2 text-white font-bold text-lg">
+        <svg class="w-6 h-6 fill-current" viewBox="0 0 76 65"><path d="M37.5274 0L75.0548 65H0L37.5274 0Z"/></svg>
+        Vercel
+      </div>
+
+      <!-- Make.com -->
+      <div class="flex items-center gap-2 text-indigo-400 font-bold text-lg">
+        <span>Make.com</span>
+      </div>
+
+      <!-- Zoho Mail -->
+      <div class="flex items-center gap-2 text-red-400 font-bold text-lg">
+        <span>Zoho Mail</span>
+      </div>
+
+      <!-- GitHub -->
+      <div class="flex items-center gap-2 text-slate-300 font-bold text-lg">
+        <span>GitHub</span>
+      </div>
+
+    </div>
+  </div>
+</section>
+    
     <!-- Contact Form Section -->
     <section id="contact" class="py-20 bg-slate-900/50 border-t border-slate-800">
         <div class="max-w-xl mx-auto px-6 text-center">
             <h2 class="text-3xl font-bold">Request a System Diagnostic</h2>
             <p class="text-slate-400 mt-2 text-sm">We will run a complimentary DNS security check and provide a workflow automation outline for your business.</p>
             
-            <form class="mt-8 space-y-4 text-left" onsubmit="event.preventDefault(); alert('Request Received! We will be in touch shortly.');">
+            <form id="contact-form" class="mt-8 space-y-4 text-left">
                 <div>
                     <label class="block text-xs font-semibold text-slate-400 mb-1">Business Name</label>
-                    <input type="text" required placeholder="e.g. Apex Medical / Ocean Bay Villa" class="w-full bg-slate-950 border border-slate-800 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:border-green-500 text-white">
+                    <input name="business_name" type="text" required placeholder="e.g. Apex Medical / Ocean Bay Villa" class="w-full bg-slate-950 border border-slate-800 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:border-green-500 text-white">
                 </div>
                 <div>
                     <label class="block text-xs font-semibold text-slate-400 mb-1">Website Domain</label>
-                    <input type="text" required placeholder="e.g. yourbusiness.com" class="w-full bg-slate-950 border border-slate-800 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:border-green-500 text-white">
+                    <input name="name" type="text" required placeholder="e.g. yourbusiness.com" class="w-full bg-slate-950 border border-slate-800 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:border-green-500 text-white">
                 </div>
                 <div>
                     <label class="block text-xs font-semibold text-slate-400 mb-1">WhatsApp Phone Number</label>
-                    <input type="tel" required placeholder="+91 98765 43210" class="w-full bg-slate-950 border border-slate-800 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:border-green-500 text-white">
+                    <input name="phone" type="tel" required placeholder="+91 98765 43210" class="w-full bg-slate-950 border border-slate-800 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:border-green-500 text-white">
                 </div>
                 <button type="submit" class="w-full bg-green-600 hover:bg-green-500 text-white font-semibold py-3 rounded-lg text-sm transition">
                     Run Infrastructure & Automation Audit
                 </button>
             </form>
         </div>
-    </section>
-
-<!-- Inquiry Form Section -->
-    <section id="contact" class="max-w-3xl mx-auto py-16 px-6">
-        <h2 class="text-2xl font-bold text-white mb-6">Request Technical Support</h2>
-        <p class="text-slate-400 mb-6">Need help with server hardening, database routing, or day-to-day backend administration? Send the details below.</p>
-        
-        <!-- https://formspree.io/f/xppanzlo -->
-        <form id="contact-form" class="flex flex-col gap-4">
-            <input type="text" name="name" placeholder="Your Name" required class="p-3 bg-slate-900 border border-slate-700 rounded text-white focus:outline-none focus:border-green-500">
-            
-            <input type="email" name="email" placeholder="Your Email Address" required class="p-3 bg-slate-900 border border-slate-700 rounded text-white focus:outline-none focus:border-green-500">
-            
-            <textarea name="message" rows="5" placeholder="Describe the technical task or infrastructure setup you need help with..." required class="p-3 bg-slate-900 border border-slate-700 rounded text-white focus:outline-none focus:border-green-500"></textarea>
-            
-            <button type="submit" class="bg-green-600 hover:bg-green-500 text-white font-bold py-3 px-6 rounded transition">Submit Request</button>
-        </form>
     </section>
 
     <!-- Footer -->
@@ -262,14 +279,13 @@
   document.getElementById('contact-form').addEventListener('submit', async function(e) {
     e.preventDefault();
     
-    const formData = {
-      name: e.target.name.value,
-      email: e.target.email.value,
-      message: e.target.message.value,
-      business_name: "AegisFlow Website Lead", // or add a field for this if you have one
-      phone: "Not provided"
-    };
-
+   const formData = {
+  business_name: e.target.business_name.value,
+  name: e.target.name.value,
+  phone: e.target.phone.value,
+  email: "Not provided", // or you can add an email field if you want
+  message: "System Diagnostic & Audit Requested via Website"
+};
     try {
       const response = await fetch('/api/contact', {
         method: 'POST',
