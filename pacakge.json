@@ -1,0 +1,8 @@
+{
+  "name": "aegisflow-website",
+  "version": "1.0.0",
+  "description": "AegisFlow serverless backend",
+  "dependencies": {
+    "nodemailer": "^6.9.13"
+  }
+}
